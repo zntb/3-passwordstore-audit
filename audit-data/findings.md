@@ -1,4 +1,4 @@
-### [S-#] Storing the password on-chain makes it visible to anyone, and is no longer private
+### [H-1] Storing the password on-chain makes it visible to anyone, and is no longer private
 
 **Description:** All data stored on-chain is publicly visible and can be read directly from the blockchain. The `PasswordStore::s_password` variable is intended to be private and should only be accessible through the `PasswordStore::getPassword` function.
 
@@ -50,7 +50,23 @@ myPassword
 
 ---
 
-### [S-#] `PasswordStore::setPassword` has no access controls, allowing non-owners to change the password
+## Likelihood & Impact:
+
+- Impact: HIGH
+
+- Likelihood: HIGH
+
+- Severity: HIGH
+
+## High
+
+- Worst offenders -> Least bad
+
+## Medium
+
+## Low
+
+### [H-2] `PasswordStore::setPassword` has no access controls, allowing non-owners to change the password
 
 **Description:** The `PasswordStore::setPassword` function is marked as `external` without any access controls, despite the NatSpec comment stating: "This function allows only the owner to set a new password."
 
@@ -96,7 +112,15 @@ if(msg.sender != s_owner) {
 
 ---
 
-### [S-#] Incorrect NatSpec in `PasswordStore::getPassword` references non-existent parameter
+## Likelihood & Impact:
+
+- Impact: HIGH
+
+- Likelihood: HIGH
+
+- Severity: HIGH
+
+### [I-1] Incorrect NatSpec in `PasswordStore::getPassword` references non-existent parameter
 
 **Description:** The NatSpec documentation for `PasswordStore::getPassword` incorrectly references a `newPassword` parameter that doesn't exist in the function signature.
 
@@ -118,3 +142,13 @@ function getPassword() external view returns (string memory) {}
 - * @param newPassword The new password to set.
  */
 ```
+
+### Likelihood & Impact
+
+- Impact: NONE
+
+- Likelihood: HIGH
+
+- Severity: Informational/Gas/Non-crit
+
+Informational: Hey, this isn't a bug, but you should know.
